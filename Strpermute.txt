@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+void swap(char *x,char *y)
+{
+    char temp;
+    temp=*x;
+    *x=*y;
+    *y=temp;
+}
+void per(char *a,int start,int end)
+{
+    if(start==end)
+        printf("%s\n",a);
+    else
+        for(int i=start;i<=end;i++)
+        {
+            swap(a+start,a+i);
+            per(a,start+1,end);
+            swap(a+start,a+i);
+        }
+}
+int main() 
+{
+    int k;
+    scanf("%d",&k);
+    char a[100];
+    scanf("%s",a);
+    int len=strlen(a);
+    per(a,0,len-1);
+    
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}

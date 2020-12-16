@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+int n,top=-1,*arr;
+void push(int num)
+{
+    if(top==n)
+        return;
+    arr[++top]=num;
+}
+int pop()
+{
+    if(top==-1)
+        return -1;
+    return arr[top--];
+}
+void printstack()
+{
+    for(int i=top;i>-1;i--)
+    {
+        printf("%d",arr[i]);
+        printf("\n");
+    }
+}
+int peak()
+{
+    if(top==-1)
+        return -1;
+    return arr[top];
+}
+int main()
+{
+    n=10;
+    arr=(int*)malloc(n*sizeof(int));
+    push(10);
+    push(5);
+    push(7);
+    printf("%d",peak());
+    printstack();
+}

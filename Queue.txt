@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 50
+int front=-1,rear=-1,ch,arr[MAX],i=0;
+int insert()
+{
+    int new_num;
+    if(rear==MAX-1)
+        printf("Queue Overflow");
+    else
+    {
+        if(front==-1)
+            front=0;
+        printf("Insert data\n");
+        scanf("%d",&new_num);
+        rear+=1;
+        arr[rear]=new_num;
+    }
+}
+int delete()
+{
+    if(front==-1 || front>rear)
+        printf("Queue Underflow\n");
+    else
+    {
+        printf("%d ",arr[front]);
+        printf("\n");
+        front+=1;
+    }
+}
+int display()
+{
+    for(i=front;i<=rear;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+}
+int main()
+{
+    while(1)
+    {
+        printf("enter your choice\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                insert();
+                break;
+            case 2:
+                delete();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(1);
+            default:
+                printf("Wrong Choice\n");
+        }
+    }
+}

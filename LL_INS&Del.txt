@@ -1,0 +1,86 @@
+
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node* next;
+};
+void push(struct node** head_ref,int new_data)
+{
+    struct node* new_node;
+    new_node=(struct node*)malloc(sizeof(struct node));
+    new_node->data=new_data;
+    new_node->next=*head_ref;
+    *head_ref=new_node;
+    
+}
+void mid(struct node* ref_node,int new_data)
+{
+    struct node* new_node;
+    new_node=(struct node*)malloc(sizeof(struct node));
+    new_node->next=ref_node->next;
+    new_node->data=new_data;
+    ref_node->next=new_node;
+}
+void end(struct node* ref,int new_data)
+{
+    
+    struct node* last;
+    struct node* new_node;
+    new_node=(struct node*)malloc(sizeof(struct node));
+    last=(struct node*)malloc(sizeof(struct node));
+    new_node->data=new_data;
+    new_node->next=NULL;
+    last=ref;
+    while(last->next!=NULL)
+    {
+        last=last->next;
+    }
+    last->next=new_node;
+    
+}
+void del(struct node* ref,int key)
+{
+    struct node* temp;
+    struct node* prev;
+    temp=ref;
+    if(temp!=NULL && temp->data==key)
+    {
+        prev=temp->next;
+        ref=prev;
+        free(temp);
+        return;
+    }
+    while(temp!=NULL && temp->data!=key)
+    {
+        prev=temp;
+        temp=temp->next;
+    }
+    if(temp==NULL)
+        return;
+    prev=temp->next;
+    free(temp);
+}
+void printlist(struct node*  n)
+{
+    while(n!=NULL)
+    {
+        if(n->data!=0)
+            printf("%d",n->data);
+        n=n->next;
+    }
+}
+int main()
+{
+    struct node* head;
+    head=(struct node*)malloc(sizeof(struct node));
+    head->data=9;
+    push(&head,6);
+    push(&head,5);
+    mid(head,7);
+    end(head,8);
+    del(head,5);
+    printlist(head);
+}
